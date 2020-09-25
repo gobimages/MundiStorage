@@ -72,7 +72,7 @@
     {
             "type": "Microsoft.Authorization/roleAssignments",
             "apiVersion": "2020-04-01-preview",
-            "name": "[guid(resourceGroup().id, 'monitoringUsers')]",
+            "name": "[guid(resourceGroup().id, 'smbcontributor')]",
             "properties": {
     
                 "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '0c867c2a-1d8c-454a-a3db-ab2ea1bdc8bb')]",
@@ -84,7 +84,7 @@
     {
             "type": "Microsoft.Authorization/roleAssignments",
             "apiVersion": "2020-04-01-preview",
-            "name": "[guid(resourceGroup().id, 'monitoringUsers')]",
+            "name": "[guid(resourceGroup().id, 'smbelevated')]",
             "properties": {
     
                 "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'a7264617-510b-434b-a828-9731dc254ea7')]",
