@@ -19,7 +19,7 @@
       "type": "array",
       "defaultValue": ["ukwest"],
       "metadata": {
-        "description": "Region"
+        "description": "Where will the storage Account Reside"
       }
     }
   },
