@@ -73,7 +73,7 @@
             "type": "Microsoft.Authorization/roleAssignments",
             "apiVersion": "2020-04-01-preview",
             "dependson": [
-              "[parameters('StorageAccountName')]]"
+              "[parameters('StorageAccountName')]"
             ],
             "name": "[guid(resourceGroup().id)]",
             "properties": {
