@@ -24,7 +24,9 @@
     }
   },
   "functions": [],
-  "variables": {},
+  "variables": {
+    "Permission": [""]
+  },
   "resources": [
     {
       "name": "[parameters('StorageAccountName')[copyIndex()]]",
@@ -87,7 +89,7 @@
       }
     },
     {
-      "type": "Microsoft.Authorization/roleAssignments",
+      "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
       "apiVersion": "2020-04-01-preview",
       "name": "[concat(parameters('StorageAccountName')[copyIndex()],'/Microsoft.Authorization/', guid(uniquestring(parameters('StorageAccountName')[copyIndex()])))]",
       "copy": {
@@ -100,7 +102,6 @@
         "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName')[copyIndex()])]"
       }
     }
-   
   ],
   "outputs": {}
 }
