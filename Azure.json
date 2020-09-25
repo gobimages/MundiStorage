@@ -66,10 +66,6 @@
       "tags": {
         "IAC": "[parameters('TAG')]"
       },
-      "copy": {
-        "name": "Stgcpy",
-        "count": "[parameters('StorageAccountName')[copyIndex()]]"
-      },
       "location": "[parameters('Location')]",
       "kind": "StorageV2",
       "sku": {
