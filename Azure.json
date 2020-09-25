@@ -70,16 +70,21 @@
       }
     },
     {
-            "type": "Microsoft.Authorization/roleAssignments",
-            "apiVersion": "2020-04-01-preview",
-            "name": "[guid(resourceGroup().id, 'smbcontributor')]",
-            "properties": {
-    
-                "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '0c867c2a-1d8c-454a-a3db-ab2ea1bdc8bb')]",
-                "principalId": "5480aa3f-5cbb-4baa-8c9e-b74e37b9fb52",
-                "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName'))]"
-            }
-            
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2020-04-01-preview",
+      "name": "[guid(resourceGroup().id, 'monitoringUsers')]",
+      "dependson": [
+        "[parameters('StorageAccountName')[copyIndex()]]"
+      ],
+      "copy": {
+        "name": "rsccpy",
+        "count": "[length(parameters('StorageAccountName'))]"
+      },
+      "properties": {
+        "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '0c867c2a-1d8c-454a-a3db-ab2ea1bdc8bb')]",
+        "principalId": "5480aa3f-5cbb-4baa-8c9e-b74e37b9fb52",
+        "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName')[copyIndex()])]"
+      }
     }
    
   ],
