@@ -80,19 +80,8 @@
                 "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName'))]"
             }
             
-    },
-    {
-            "type": "Microsoft.Authorization/roleAssignments",
-            "apiVersion": "2020-04-01-preview",
-            "name": "[guid(resourceGroup().id, 'smbelevated')]",
-            "properties": {
-    
-                "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'a7264617-510b-434b-a828-9731dc254ea7')]",
-                "principalId": "60cc58aa-7a18-424b-90e7-27ce8093e54d",
-                "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName'))]"
-            }
-            
     }
+   
   ],
   "outputs": {}
 }
