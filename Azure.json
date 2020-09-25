@@ -4,9 +4,7 @@
   "parameters": {
     "StorageAccountName": {
       "type": "array",
-      "defaultValue": [
-        "saceur001"
-      ],
+      "defaultValue": ["saceur001"],
       "metadata": {
         "description": "Name of Storage Account"
       }
@@ -60,11 +58,15 @@
   "variables": {},
   "resources": [
     {
-      "name": "[length(parameters('StorageAccountName'))]",
+      "name": "[parameters('StorageAccountName')[copyIndex()]]",
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2019-06-01",
       "tags": {
         "IAC": "[parameters('TAG')]"
+      },
+      "copy": {
+        "name": "Stgcpy",
+        "count": "[length(parameters('StorageAccountName'))]"
       },
       "location": "[parameters('Location')]",
       "kind": "StorageV2",
