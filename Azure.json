@@ -70,9 +70,6 @@
         "tier": "Standard"
       },
       "properties": {
-        "azureFilesIdentityBasedAuthentication": {
-          "directoryServiceOptions": "AD"
-        },
         "minimumTlsVersion": "TLS1_0",
         "allowBlobPublicAccess": false,
         "networkAcls": {
