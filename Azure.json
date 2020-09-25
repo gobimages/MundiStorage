@@ -19,7 +19,7 @@
       "type": "array",
       "defaultValue": ["ukwest"],
       "metadata": {
-        "description": "Where will the storage Account Reside"
+        "description": "Region"
       }
     }
   },
@@ -80,7 +80,7 @@
     
                 "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '0c867c2a-1d8c-454a-a3db-ab2ea1bdc8bb')]",
                 "principalId": "5480aa3f-5cbb-4baa-8c9e-b74e37b9fb52",
-                "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName')[copyIndex()])]"
+                "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName'))]"
             }
             
     },
@@ -88,14 +88,14 @@
             "type": "Microsoft.Authorization/roleAssignments",
             "apiVersion": "2020-04-01-preview",
             "dependson": [
-              "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName'))]"
+              "[parameters('StorageAccountName')]"
             ],
             "name": "[guid(resourceGroup().id)]",
             "properties": {
     
                 "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'a7264617-510b-434b-a828-9731dc254ea7')]",
                 "principalId": "60cc58aa-7a18-424b-90e7-27ce8093e54d",
-                "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName')[copyIndex()])]"
+                "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName'))]"
             }
             
     }
