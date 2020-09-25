@@ -91,7 +91,7 @@
     {
       "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
       "apiVersion": "2020-04-01-preview",
-      "name": "[concat(parameters('StorageAccountName')[copyIndex()],'/Microsoft.Authorization/', guid(uniquestring(resourceGroup().id)))]",
+      "name": "[concat(parameters('StorageAccountName')[copyIndex()],'/Microsoft.Authorization/', guid(uniquestring(parameters('Location')[copyIndex()])))]",
       "copy": {
         "name": "rsccpy2",
         "count": "[length(parameters('StorageAccountName'))]"
