@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "StorageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of Storage Account"
+      }
+    },
+    "TAG": {
+      "type": "string",
+      "metadata": {
+        "description": "TAG Name"
+      }
+    }
+  },
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "name": "[parameters('StorageAccountName')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-06-01",
+      "tags": {
+        "IAC": "[parameters('TAG')]"
+      },
+      "location": "[resourceGroup().location]",
+      "kind": "StorageV2",
+      "sku": {
+        "name": "Standard_ZRS",
+        "tier": "Standard"
+      },
+      "properties": {
+        "azureFilesIdentityBasedAuthentication": {
+          "directoryServiceOptions": "AD"
+        },
+        "minimumTlsVersion": "TLS1_0",
+        "allowBlobPublicAccess": false,
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+          "services": {
+            "file": {
+              "keyType": "Account",
+              "enabled": true
+            },
+            "blob": {
+              "keyType": "Account",
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot"
+      }
+    }
+  ],
+  "outputs": {}
+}
