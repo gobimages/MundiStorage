@@ -25,7 +25,8 @@
   },
   "functions": [],
   "variables": {
-   
+    "SMBContributorGroup": "value",
+    "SMBContributorElevated": "value"
   },
   "resources": [
     {
@@ -75,16 +76,14 @@
       "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
       "apiVersion": "2020-04-01-preview",
       "name": "[concat(parameters('StorageAccountName')[copyIndex()],'/Microsoft.Authorization/', guid(uniquestring(parameters('StorageAccountName')[copyIndex()])))]",
-      "dependson": [
-        "[parameters('StorageAccountName')[copyIndex()]]"
-      ],
+      "dependson": ["[parameters('StorageAccountName')[copyIndex()]]"],
       "copy": {
         "name": "rsccpy",
         "count": "[length(parameters('StorageAccountName'))]"
       },
       "properties": {
         "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '0c867c2a-1d8c-454a-a3db-ab2ea1bdc8bb')]",
-        "principalId": "5480aa3f-5cbb-4baa-8c9e-b74e37b9fb52",
+        "principalId": "[variables('SMBContributorElevated')]",
         "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName')[copyIndex()])]"
       }
     },
@@ -92,16 +91,14 @@
       "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
       "apiVersion": "2020-04-01-preview",
       "name": "[concat(parameters('StorageAccountName')[copyIndex()],'/Microsoft.Authorization/', guid(uniquestring(parameters('Location')[copyIndex()])))]",
-      "dependson": [
-        "[parameters('StorageAccountName')[copyIndex()]]"
-      ],
+      "dependson": ["[parameters('StorageAccountName')[copyIndex()]]"],
       "copy": {
         "name": "rsccpy2",
         "count": "[length(parameters('StorageAccountName'))]"
       },
       "properties": {
         "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'a7264617-510b-434b-a828-9731dc254ea7')]",
-        "principalId": "60cc58aa-7a18-424b-90e7-27ce8093e54d",
+        "principalId": "[variables('SMBContributorGroup')]",
         "scope": "[resourceId('Microsoft.Storage/storageAccounts',parameters('StorageAccountName')[copyIndex()])]"
       }
     }
